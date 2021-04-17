@@ -1,0 +1,14 @@
+﻿@model StoreWebApplication.Mvc.ViewModels.ProductListViewModel;
+@{
+    ViewData["ProductName"] = "List";
+}
+@foreach (var product in Model.Products)
+{
+        <div class="container-fluid">
+            <div class="card-body">
+                <h2>@product.ProductName</h2>
+                <p>@product.Description</p>
+                <p>@product.Price</p>
+            </div>
+        </div>
+}
