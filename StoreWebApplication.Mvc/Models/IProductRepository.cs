@@ -5,6 +5,6 @@ namespace StoreWebApplication.Mvc.Models
     public interface IProductRepository
     {
         IEnumerable<Product> AllProducts { get; }
-        Product GetProductById(int bookId);
+        Product GetProductById(int productId);
     }
 }

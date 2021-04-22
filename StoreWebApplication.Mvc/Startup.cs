@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,10 +19,12 @@ namespace StoreWebApplication.Mvc
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<StoreDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllersWithViews();
 
-            services.AddScoped<IProductRepository, MockProductRepository>();
-            services.AddScoped<ICategoryRepository, MockCategoryRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
